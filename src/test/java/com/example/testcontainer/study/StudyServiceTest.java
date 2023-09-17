@@ -4,8 +4,6 @@ import com.example.testcontainer.domain.Member;
 import com.example.testcontainer.domain.Study;
 import com.example.testcontainer.domain.StudyStatus;
 import com.example.testcontainer.member.MemberService;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Optional;
 
@@ -26,6 +26,7 @@ import static org.mockito.Mockito.times;
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 @ActiveProfiles("test")
+@Testcontainers
 class StudyServiceTest {
 
     @Mock
@@ -34,18 +35,9 @@ class StudyServiceTest {
     @Autowired
     StudyRepository studyRepository;
 
+    @Container
     static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer().withDatabaseName("studytest");
 
-    @BeforeAll
-    static void beforeAll() {
-        postgreSQLContainer.start();
-        System.out.println(postgreSQLContainer.getJdbcUrl());
-    }
-
-    @AfterAll
-    static void afterAll() {
-        postgreSQLContainer.stop();
-    }
 
     @Test
     void createNewStudy() {
