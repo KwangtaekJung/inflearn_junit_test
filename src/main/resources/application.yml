@@ -1,11 +1,5 @@
-#spring:
-#  datasource:
-#    url: jdbc:tc:postgresql:///studytest
-#    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
-#    hikari:
-#      jdbc-url: jdbc:tc:postgresql:///studytest
-#      driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+spring.jpa.hibernate.ddl-auto: update
 
-#  jpa:
-#    hibernate:
-#      ddl-auto: create-drop
+#spring.datasource.url: jdbc:h2:~/spring-h2-db
+#spring.datasource.username: sa
+#spring.datasource.password:
